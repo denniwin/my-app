@@ -1,0 +1,85 @@
+.post {
+    background-color: #fff;
+    position: relative;
+    height: 315px;
+    padding: 10px;
+    display: grid;
+    gap: 5px;
+    grid-template-rows: 266px;
+    grid-template-areas: 
+    'post__description post__message'
+    'post__tags post__tags' 50px;
+    grid-template-columns: 50px 1fr;
+    margin: 10px;
+    box-shadow: 1px 1px 7px #33333394;
+
+    &__avatar {
+        margin-bottom: 10px;
+    }
+    
+    &__tags {
+        display: flex;
+        gap: 10px;
+        cursor: pointer;
+
+        &-general {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 10px;
+            color: #0088EE;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &-secondary {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 10px;
+            color: #CDCDCD;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__icon-star {
+        color: #808080a9;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        &:hover{color:#0088EE;}
+    }
+
+    &__comment {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 9px;
+        color: #808080;
+        margin-bottom: 10px;
+    }
+
+    &__author {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 13px;
+        color: #808080;
+        margin-bottom: 5px;
+    }
+
+    &__text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -0.035em;
+        color: #333333;
+    }
+}
