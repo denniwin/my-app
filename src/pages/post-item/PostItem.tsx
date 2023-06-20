@@ -1,7 +1,7 @@
 import dateFormat from "dateformat";
 import avatar from "./img/avatar.svg";
 import 'font-awesome/css/font-awesome.min.css';
-import "./post.scss";
+import "./postitem.scss";
 
 const Post = ({ author, content, date, attachments }: any) => {
   return (
