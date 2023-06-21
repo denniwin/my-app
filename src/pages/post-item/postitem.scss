@@ -1,14 +1,14 @@
 .post {
     background-color: #fff;
     position: relative;
-    height: 315px;
+    min-height: 315px;
     padding: 10px;
     display: grid;
     gap: 5px;
-    grid-template-rows: 266px;
+    // grid-template-rows: 266px;
     grid-template-areas: 
     'post__description post__message'
-    'post__tags post__tags' 50px;
+    'post__tags post__tags';
     grid-template-columns: 50px 1fr;
     margin: 10px;
     box-shadow: 1px 1px 7px #33333394;
@@ -63,6 +63,18 @@
         line-height: 9px;
         color: #808080;
         margin-bottom: 10px;
+    }
+
+    &__img {
+        margin-top: 10px;
+        width: 259px;
+        height: 146px;
+
+        img {
+            width: 259px;
+            height: 146px;
+            object-fit: contain;
+        }
     }
 
     &__author {
