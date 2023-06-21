@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GetPosts } from "../../API/posts.api";
 import { Message } from "../../Models/message";
 import PostItem from "../post-item/PostItem";
 import "./postslist.scss";
 
-const PostsList = () => {
+const PostsList = ({ sort }: any) => {
   const [posts, setPosts] = useState<Message[]>([]);
   const [lastId, setlastId] = useState<Number>(0);
   const [favorites, setFavorites] = useState<String[]>([]);
   const [hidden, setHidden] = useState<Boolean>(true);
 
-  const sortPosts = (arr: any, sort: boolean = true) => {
+  const sortPosts = (arr: any, sort: Boolean = true) => {
     if (sort) {
       return arr.sort((a: any, b: any) => b.id - a.id);
     } else return arr.sort((a: any, b: any) => a.id - b.id);
@@ -61,9 +61,9 @@ const PostsList = () => {
     };
   }, [lastId]);
 
-  const sortarray = sortPosts(posts);
+  const sortarray = sortPosts(posts, sort);
   const actualMessages = sortarray.slice(0, 20);
-  const archiveMessages = sortarray.slice(20);
+  const archiveMessages = posts.slice(21);
 
   return (
     <div className="container z-100">
@@ -83,7 +83,6 @@ const PostsList = () => {
           content={item.content}
           date={item.date}
           attachments={item.attachments[0]}
-
         />
       ))}
       {archiveMessages.length > 0 && (
@@ -91,14 +90,14 @@ const PostsList = () => {
           onClick={() => setHidden((prev) => !prev)}
           className="text-center cursor-pointer text-gray-500 hover:font-bold mb-10"
         >
-          Показать архивные сообщения - {archiveMessages.length}
+          Загрузить предыдущие - {archiveMessages.length}
         </h2>
       )}
 
-      <div className={` ${!hidden ? "hidden" : "visible"} `}>
+      <div className={` ${hidden ? "hidden" : "visible"} `}>
         {archiveMessages?.map((item: any, index: any) => (
           <PostItem
-            key={index}
+            key={index + 123}
             toggleFavorite={toggleFavorite}
             isPostFavorite={isPostFavorite}
             id={item.id}

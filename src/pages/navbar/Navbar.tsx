@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Navbar() {
+export default function Navbar({ sorted }: any) {
   const [navbar, setNavbar] = useState(false);
 
   return (
@@ -57,7 +57,7 @@ export default function Navbar() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#!">
+                <a onClick={() => sorted()} href="#!">
                   Сортировка
                   <i
                     className="fa fa-sort"

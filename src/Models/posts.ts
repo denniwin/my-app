@@ -1,10 +1,5 @@
-export interface Root<T> {
+export interface Response<T> {
   Messages: T[];
   likeImages: any[];
   dislikeImages: any[];
 }
-
-// export interface Attachment {
-//   type: string;
-//   url: string;
-// }
