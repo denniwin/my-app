@@ -57,14 +57,14 @@ export default function Navbar({ sorted }: any) {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 hover:text-blue-600">
-                <a onClick={() => sorted()} href="#!">
+                <button onClick={() => sorted()}>
                   Сортировка
                   <i
                     className="fa fa-sort"
                     style={{ marginLeft: 5 }}
                     aria-hidden="true"
                   ></i>
-                </a>
+                </button>
               </li>
               {/* <li className="text-gray-600 hover:text-blue-600">
                                 <a href="#!">Blog</a>
@@ -72,7 +72,7 @@ export default function Navbar({ sorted }: any) {
               {/* <li className="text-gray-600 hover:text-blue-600">
                                 <a href="#!">About US</a>
                             </li> */}
-              <li className="text-gray-600 hover:text-blue-600">
+              {/* <li className="text-gray-600 hover:text-blue-600">
                 <a href="#!">
                   Избранное
                   <i
@@ -81,7 +81,7 @@ export default function Navbar({ sorted }: any) {
                     aria-hidden="true"
                   ></i>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

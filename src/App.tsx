@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import "./App.scss";
+import { useState } from "react";
 import Navbar from "./pages/navbar/Navbar";
 import Posts from "./pages/post-list/PostsList";
+import "./App.scss";
 
 function App() {
   const [sort, setSort] = useState<Boolean>(true);

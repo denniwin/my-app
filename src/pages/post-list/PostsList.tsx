@@ -6,6 +6,7 @@ import "./postslist.scss";
 
 const PostsList = ({ sort }: any) => {
   const [posts, setPosts] = useState<Message[]>([]);
+  const [oldPosts, setOldPosts] = useState<Message[]>([]);
   const [lastId, setlastId] = useState<Number>(0);
   const [favorites, setFavorites] = useState<String[]>([]);
   const [hidden, setHidden] = useState<Boolean>(true);
@@ -31,6 +32,42 @@ const PostsList = ({ sort }: any) => {
     }
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  const GetDataOldPost = (messageId: any = 0, oldMessages: any = false) => {
+
+    GetPosts(messageId, oldMessages)
+      .then((item) => {
+        if (item) {
+          console.log("Пошёёёл запрос");
+          setOldPosts(item);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return () => {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
+
+  const scrollHandler = (e: any) => {
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+      100
+    ) {
+      GetDataOldPost(0, true);
+      setHidden(false);
+    }
+
+    if (e.target.documentElement.scrollTop < 1500) {
+      setHidden(true)
+    }; 
   };
 
   useEffect(() => {
@@ -63,7 +100,7 @@ const PostsList = ({ sort }: any) => {
 
   const sortarray = sortPosts(posts, sort);
   const actualMessages = sortarray.slice(0, 20);
-  const archiveMessages = posts.slice(21);
+  const archiveMessages = oldPosts;
 
   return (
     <div className="container z-100">
@@ -85,13 +122,8 @@ const PostsList = ({ sort }: any) => {
           attachments={item.attachments[0]}
         />
       ))}
-      {archiveMessages.length > 0 && (
-        <h2
-          onClick={() => setHidden((prev) => !prev)}
-          className="text-center cursor-pointer text-gray-500 hover:font-bold mb-10"
-        >
-          Загрузить предыдущие - {archiveMessages.length}
-        </h2>
+      {archiveMessages.length !== 0 && (
+        <h2 className="text-center cursor-default text-gray-500 mb-10 mt-10">Предыдущие</h2>
       )}
 
       <div className={` ${hidden ? "hidden" : "visible"} `}>
